@@ -1,0 +1,1 @@
+const webscreen = 600;
