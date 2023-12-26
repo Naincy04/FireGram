@@ -1,6 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:instagram/resources/auth_methods.dart';
 import 'package:instagram/utils/colors.dart';
+import 'package:instagram/utils/image_file.dart';
 import 'package:instagram/widgets/text_field_input.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -15,6 +20,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final _passwordController = TextEditingController();
   final _bioController = TextEditingController();
   final _usernameController = TextEditingController();
+  Uint8List? _image;
 
   @override
   void dispose() {
@@ -25,50 +31,61 @@ class _SignUpPageState extends State<SignUpPage> {
     _usernameController.dispose();
   }
 
+  void selectImage() async {
+    Uint8List choosedImg = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = choosedImg;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 32),
+          padding: const EdgeInsets.symmetric(horizontal: 32),
           width: double.infinity,
 
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
-                child: Container(),
                 flex: 2,
+                child: Container(),
               ),
               //svg file of Logo
               SvgPicture.asset(
                 "assets/ic_instagram.svg",
                 color: primaryColor,
-                height: 64,
+                height: 60,
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
               //Circular Avatar for profile image
               Stack(
                 children: [
-                  CircleAvatar(
-                    radius: 64,
-                    backgroundImage: NetworkImage(
-                        'https://images.unsplash.com/photo-1703426108384-f5f3f45de1aa?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxN3x8fGVufDB8fHx8fA%3D%3D'),
-                  ),
+                  _image != null
+                      ? CircleAvatar(
+                          radius: 50,
+                          backgroundImage: MemoryImage(_image!),
+                        )
+                      : const CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(
+                              'https://thumbs.dreamstime.com/b/default-profile-picture-avatar-photo-placeholder-vector-illustration-default-profile-picture-avatar-photo-placeholder-vector-189495158.jpg'),
+                        ),
                   Positioned(
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.add_a_photo),
-                    ),
                     bottom: -10,
-                    left: 80,
+                    left: 60,
+                    child: IconButton(
+                      onPressed: () => selectImage(),
+                      icon: const Icon(Icons.add_a_photo),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(
-                height: 25,
+                height: 20,
               ),
               //Text input field for Username
               TextFieldInput(
@@ -77,7 +94,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 textInputType: TextInputType.text,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               //Text input field for email
               TextFieldInput(
@@ -86,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 textInputType: TextInputType.emailAddress,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               //Text input field for passwords
               TextFieldInput(
@@ -96,7 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 isPass: true,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               TextFieldInput(
                 textEditingController: _bioController,
@@ -104,13 +121,21 @@ class _SignUpPageState extends State<SignUpPage> {
                 textInputType: TextInputType.text,
               ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               //Submit button logic
               InkWell(
+                onTap: () {
+                  Future<String> res = AuthMethods().signUpUser(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                    username: _usernameController.text,
+                    bio: _bioController.text,
+                    file: _image!,
+                  );
+                },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 12),
-                  width: double.infinity,
                   alignment: Alignment.center,
                   decoration: const ShapeDecoration(
                     shape: RoundedRectangleBorder(
@@ -120,28 +145,28 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     color: blueColor,
                   ),
-                  child: const Text("Log In"),
+                  child: const Text("Sign Up"),
                 ),
               ),
               Flexible(
-                child: Container(),
                 flex: 2,
+                child: Container(),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text("Don't have an account?"),
-                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: const Text("Already have an account?"),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: Container(
-                      child: Text(
-                        "SignUp",
+                      child: const Text(
+                        "LogIn",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 8),
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
                   ),
                 ],
