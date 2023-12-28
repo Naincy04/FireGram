@@ -3,4 +3,5 @@ import 'package:flutter/material.dart';
 
 class StorageMethods {
   final FirebaseStorage _storage = FirebaseStorage.instance;
+  
 }
