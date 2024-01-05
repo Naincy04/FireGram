@@ -1,15 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram/responsive/mobile_screen_layout.dart';
-import 'package:instagram/responsive/responsive_screen_layout.dart';
-import 'package:instagram/responsive/web_screen_layout.dart';
-import 'package:instagram/screens/login_page.dart';
 import 'package:instagram/screens/signup_screen.dart';
 import 'package:instagram/utils/colors.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
+//Initialize firebase
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       // home: const ResponsiveScreenLayout(
       //     webScreenLayout: WebScreenLayout(),
       //     mobileScreenLayout: MobileScreenLayout()),
-      home: SignUpPage(),
+      home: const SignUpPage(),
     );
   }
 }

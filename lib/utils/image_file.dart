@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 pickImage(ImageSource source) async {
-  final ImagePicker _imgPicker = ImagePicker();
+  final ImagePicker imgPicker = ImagePicker();
 
-  XFile? _file = await _imgPicker.pickImage(source: source);
+  XFile? file = await imgPicker.pickImage(source: source);
 
-  if (_file != null) {
-    return await _file.readAsBytes();
+  if (file != null) {
+    return await file.readAsBytes();
   }
   print("No image is selected");
 }

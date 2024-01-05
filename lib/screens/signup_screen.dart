@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -55,7 +54,7 @@ class _SignUpPageState extends State<SignUpPage> {
               //svg file of Logo
               SvgPicture.asset(
                 "assets/ic_instagram.svg",
-                color: primaryColor,
+                // color: primaryColor,
                 height: 60,
               ),
               const SizedBox(
@@ -126,7 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
               //Submit button logic
               InkWell(
                 onTap: () {
-                  Future<String> res = AuthMethods().signUpUser(
+                  AuthMethods().signUpUser(
                     email: _emailController.text,
                     password: _passwordController.text,
                     username: _usernameController.text,
@@ -156,17 +155,17 @@ class _SignUpPageState extends State<SignUpPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: const Text("Already have an account?"),
                     padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: const Text("Already have an account?"),
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
                       child: const Text(
                         "LogIn",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 8),
                     ),
                   ),
                 ],

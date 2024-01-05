@@ -33,13 +33,13 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Flexible(
-                child: Container(),
                 flex: 2,
+                child: Container(),
               ),
               //svg file of Logo
               SvgPicture.asset(
                 "assets/ic_instagram.svg",
-                color: primaryColor,
+                // color: primaryColor,
                 height: 64,
               ),
               const SizedBox(
@@ -82,24 +82,24 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Flexible(
-                child: Container(),
                 flex: 2,
+                child: Container(),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    child: Text("Don't have an account?"),
-                    padding: EdgeInsets.symmetric(vertical: 8),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: const Text("Don't have an account?"),
                   ),
                   GestureDetector(
                     onTap: () {},
                     child: Container(
-                      child: Text(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: const Text(
                         "SignUp",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                      padding: EdgeInsets.symmetric(vertical: 8),
                     ),
                   ),
                 ],
