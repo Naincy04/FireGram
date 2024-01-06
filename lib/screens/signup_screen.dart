@@ -124,14 +124,15 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
               //Submit button logic
               InkWell(
-                onTap: () {
-                  AuthMethods().signUpUser(
+                onTap: () async {
+                  String resource = await AuthMethods().signUpUser(
                     email: _emailController.text,
                     password: _passwordController.text,
                     username: _usernameController.text,
                     bio: _bioController.text,
                     file: _image!,
                   );
+                  print("Success");
                 },
                 child: Container(
                   padding: const EdgeInsets.symmetric(vertical: 12),

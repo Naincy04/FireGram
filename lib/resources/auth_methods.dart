@@ -15,23 +15,30 @@ class AuthMethods {
       required Uint8List file}) async {
     String res = "Some error occurred";
     try {
-      // Register user
-      UserCredential userCred = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      if (email.isNotEmpty ||
+          password.isNotEmpty ||
+          username.isNotEmpty ||
+          bio.isNotEmpty ||
+          file != null) {
+        // Register user
 
-      String photoUrl = await StorageMethods()
-          .uploadImageToStorage('profilePics', file, false);
+        UserCredential userCred = await _auth.createUserWithEmailAndPassword(
+            email: email, password: password);
 
-      // Add user data to database
-      await _fireStore.collection('users').doc(userCred.user!.uid).set({
-        'email': email,
-        'password': password,
-        'bio': bio,
-        'username': username,
-        'followers': [],
-        'following': [],
-        'profileImage': photoUrl,
-      });
+        // String photoUrl = await StorageMethods()
+        //     .uploadImageToStorage('profilePics', file, false);
+
+        // // Add user data to database
+        // await _fireStore.collection('users').doc(userCred.user!.uid).set({
+        //   'email': email,
+        //   'password': password,
+        //   'bio': bio,
+        //   'username': username,
+        //   'followers': [],
+        //   'following': [],
+        //   'profileImage': photoUrl,
+        // });
+      }
 
       res = "success";
     } catch (error) {
