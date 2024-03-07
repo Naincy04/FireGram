@@ -1,1 +1,0 @@
-const webscreen = 600;
