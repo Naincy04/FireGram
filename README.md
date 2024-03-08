@@ -1,4 +1,4 @@
-# FireGram
+# FireGram 
 
 FireGram is an Instagram clone built using the Flutter framework and Firebase backend services. It replicates some of the key features of Instagram, allowing users to share photos, follow other users, like and comment on posts, and more.
 
