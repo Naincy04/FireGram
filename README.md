@@ -12,7 +12,7 @@ FireGram is an Instagram clone built using the Flutter framework and Firebase ba
 - User profile customization.
 
 ## Screenshots
-<img src="https://github.com/Naincy04/github-user-info-app/raw/master/ss.jpeg" width="250" height="538"> &nbsp; &nbsp;
+<img src="https://github.com/Naincy04/FireGram/blob/master/FireGram.png"> &nbsp; &nbsp;
 
 
 ## Getting Started
