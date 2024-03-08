@@ -24,7 +24,14 @@ void main() async {
           storageBucket: 'insta-clone-cb99f.appspot.com'),
     );
   } else {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyA3nwUU2H60PuRNUGicSaT61NKejd3yfHg",
+          appId: "1:1059464434:web:fae506c6835717d9bb1c6b",
+          messagingSenderId: "1059464434",
+          projectId: "insta-clone-cb99f",
+          storageBucket: 'insta-clone-cb99f.appspot.com'),
+    );
   }
   runApp(const MyApp());
 }

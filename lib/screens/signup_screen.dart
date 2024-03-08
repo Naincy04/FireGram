@@ -79,6 +79,7 @@ class _SignupScreenState extends State<SignupScreen> {
     // set state because we need to display the image we selected on the circle avatar
     setState(() {
       _image = im;
+      print("Successfully image added");
     });
   }
 

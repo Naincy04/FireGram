@@ -7,7 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1059464434:android:a71cc5d768d51f26bb1c6b",
+        "mobilesdk_app_id": "1:1059464434:web:fae506c6835717d9bb1c6b",
         "android_client_info": {
           "package_name": "com.example.instagram"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyC0drkCEkayneoW4qyfzF97nQmWMLFHNMs"
+          "current_key": "AIzaSyA3nwUU2H60PuRNUGicSaT61NKejd3yfHg"
         }
       ],
       "services": {
